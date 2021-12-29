@@ -1,5 +1,5 @@
 import logging
-
+import os
 import azure.functions as func
 import psycopg2
 
@@ -19,16 +19,17 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     if name:
         
         # Update connection string information
-        host = "<Enter DB URL/IP here>"
+        host = "<your_db_URL/IP address>"
         dbname = "postgres"
-        user = "<Enter username here>"
-        password = "<Enter your password here>"
+        user = "<user_db_user"
+        #password = "secret"
+        password = os.environ.get("secret")
         sslmode = "require"
 
         # Construct connection string
         conn_string = "host={0} user={1} dbname={2} password={3} sslmode={4}".format(host, user, dbname, password, sslmode)
         conn = psycopg2.connect(conn_string)
-        print("Connection established")
+        print("Connection established to the DB")
 
         cursor = conn.cursor()
 
@@ -63,6 +64,5 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     else:
         return func.HttpResponse(
              "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-             status_code=400
-             
+             status_code=400  
         )
