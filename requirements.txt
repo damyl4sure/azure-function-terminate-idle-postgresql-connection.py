@@ -1,0 +1,11 @@
+azure-functions==1.8.0
+click==8.0.3
+importlib-metadata==4.8.3
+pep517==0.12.0
+pip-tools==6.4.0
+#pkg_resources==none
+#psycopg2==2.9.2
+psycopg2-binary==2.9.2
+tomli==1.2.3
+typing_extensions==4.0.1
+zipp==3.6.0
